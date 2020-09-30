@@ -5,11 +5,11 @@ class UsersController < ApplicationController
     end
 
     def new
-        @users = User.new
+        @user = User.new
     end
 
     def create
-        @users = User.new
+        @user = User.new
         @user.email = params[:user][:email]
         if @user.save
             redirect_to root_path
