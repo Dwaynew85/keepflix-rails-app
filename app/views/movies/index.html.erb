@@ -1,0 +1,6 @@
+<% @movies.each do |movie| %>
+  <a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>"></a>
+<% end %>
+<h3><a href="/movies/new">Add New Movie</a></h3>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>

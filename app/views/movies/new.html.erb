@@ -1,0 +1,6 @@
+<h3>Add New Movie!</h3>
+
+<%= form_for(@movie) do |f| %>
+  Enter IMDB Movie Page Link Here:<%= f.text_field :link %>
+  <%= f.submit %>
+<% end %>

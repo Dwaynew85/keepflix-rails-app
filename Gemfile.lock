@@ -227,6 +227,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  nokogiri
   omniauth
   omniauth-github
   puma (~> 4.1)
