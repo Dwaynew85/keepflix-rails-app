@@ -1,6 +1,7 @@
 <h1>Sign Up!</h1>
 <%= form_for(@user) do |f| %>
-    <%= f.text_field :name %>
-    <%= f.text_field :email %>
-    <%= f.text_field :password_digest %>
+    Name: <%= f.text_field :name %><br>
+    Email: <%= f.text_field :email %><br>
+    Password: <%= f.password_field :password_digest %><br>
+    <%= f.submit %>
 <% end%>
