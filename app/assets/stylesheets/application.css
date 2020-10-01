@@ -176,4 +176,8 @@
       background-color: #555; /* Add a dark-grey background on hover */
     }
   }
+
+  .field_with_errors input {
+    border: 1px solid red;
+  }
   
