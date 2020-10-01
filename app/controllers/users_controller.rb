@@ -8,11 +8,15 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
+    def show
+        @user - User.find(params[:id])  
+    end
+
     def create
-        @user = User.new
-        @user.email = params[:user][:email]
+        @user = User.new #@user = User.create(params[:user])
+        #needs to save each field from params
         if @user.save
-            redirect_to root_path
+            redirect_to user_path(@user) 
         else
             render 'users/new'
         end
