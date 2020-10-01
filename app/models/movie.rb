@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 class Movie < ApplicationRecord
+  belongs_to :user
 
     def self.create_from_link(link)
         mov = Nokogiri::HTML(open(link))
