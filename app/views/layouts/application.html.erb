@@ -14,11 +14,10 @@
       <h1><a href="/">KeepFlix</a></h1>
       <h2>Your Personal Movie Library</h2>
 
-        <% if flash[:error] %>
-          <h3 style="color:red;"><%= flash[:error] %></h3>
-        <% end %>
-        <% if flash[:message] %>
-          <h3 style="color:green;"><%= flash[:message] %></h3>
+        <% flash.each do |type, msg| %>
+          <div>
+            <%= msg %>
+          </div>
         <% end %>
 
         <%= yield %>
@@ -26,8 +25,8 @@
         <div class="sidebar">
           <h3>Shortcuts</h3>
            <ul>
-            <% if logged_in? %>
-              <a href="/">Profile</a>
+            <% if current_user %>
+              <%= link_to "Profile", user_path(current_user) %>
               <%= link_to "My Movies", movies_path %>
               <%= link_to "Log Out", logout_path %>
             <%  else %>
