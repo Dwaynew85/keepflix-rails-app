@@ -25,16 +25,17 @@
 
         <div class="sidebar">
           <h3>Shortcuts</h3>
-          <!-- <ul>
-            <% # if logged_in? %>
+           <ul>
+           <!-- needs proper method to work -->
+            <!-- <% # if logged_in? %>
               <a href="/">Profile</a>
-              <a href="/movies">My Movies</a>
-              <a href="/logout">Log Out</a>
+              <%= link_to "My Movies", movies_path %>
+              <%= link_to "Log Out", logout_path %>
             <% # else %>
-              <li><a href="/signup">Sign Up</a></li>
-              <li><a href="/login">Log In</a></li>
-            <% # end %>
-          </ul> -->
+              <%= link_to "Sign Up", new_user_path %>
+              <%= link_to "Login", login_path %>
+            <% # end %> --> 
+          </ul> 
         </div>
       <footer class="branding">
         <small>&copy; 2020 <strong>KeepFlix</strong></small>
