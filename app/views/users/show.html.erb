@@ -1,5 +1,5 @@
 <h6><a href="/users/<%= @user.id %>/edit">Edit Profile</a></h6>
-<% if @user.pic_url.empty? %>
+<% if !@user.pic_url %>
   <img src="https://image.freepik.com/free-photo/black-shade-anatomy-blue-wireframe-face-front-view-dark-background_48049-5.jpg" alt="Generic Profile Pic" style="width:100px;height:100px;">
 <% else %>
   <img src="<%= @user.pic_url %>" alt="profile pic" style="width:100px;height:100px;">
