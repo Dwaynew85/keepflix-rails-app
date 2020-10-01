@@ -9,14 +9,14 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user - User.find(params[:id])  
+        @user = User.find(params[:id])  
+        @movies = Movie.all
     end
 
     def create
-        @user = User.new #@user = User.create(params[:user])
-        #needs to save each field from params
+        @user = User.new(user_params)
         if @user.save
-            redirect_to user_path(@user) 
+            redirect_to login_path 
         else
             render 'users/new'
         end
@@ -28,5 +28,11 @@ class UsersController < ApplicationController
 
     def destroy
 
+    end
+
+    private
+
+    def user_params
+        params.require(:user).permit(:name, :email, :password)
     end
 end
