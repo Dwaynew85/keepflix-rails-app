@@ -26,15 +26,14 @@
         <div class="sidebar">
           <h3>Shortcuts</h3>
            <ul>
-           <!-- needs proper method to work -->
-            <!-- <% # if logged_in? %>
+            <% if logged_in? %>
               <a href="/">Profile</a>
               <%= link_to "My Movies", movies_path %>
               <%= link_to "Log Out", logout_path %>
-            <% # else %>
+            <%  else %>
               <%= link_to "Sign Up", new_user_path %>
               <%= link_to "Login", login_path %>
-            <% # end %> --> 
+            <% end %> 
           </ul> 
         </div>
       <footer class="branding">
