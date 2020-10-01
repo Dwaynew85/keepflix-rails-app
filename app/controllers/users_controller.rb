@@ -5,7 +5,11 @@ class UsersController < ApplicationController
     end
 
     def new
-        @user = User.new
+        if logged_in?
+            redirect_to movies_path #change this
+        else
+            @user = User.new
+        end
     end
 
     def show
@@ -14,9 +18,9 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(user_params)
+        @user = User.create(user_params)
         if @user.save
-            redirect_to login_path 
+            redirect_to movies_path #double check
         else
             render 'users/new'
         end
