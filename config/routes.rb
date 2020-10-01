@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  root 'site#index' # or application#welcome
+  root 'site#index' # home?
+
   resources :movies
   resources :users
+
+  get '/signup' => 'users#new', as: 'signup'
   get '/login' => "sessions#new"
   post '/sessions' => "sessions#create"
   get '/logout' => "sessions#destroy"
