@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
     def authentication_required
         if logged_in?
-            redirect_to login _path
+            redirect_to login_path
         end
     end
 
@@ -14,4 +14,5 @@ class ApplicationController < ActionController::Base
     def current_user
         @current_user ||= User.find(session[:user_id])
     end
+    helper_method :current_user, :logged_in?
 end
