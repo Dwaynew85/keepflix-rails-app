@@ -1,0 +1,10 @@
+<h1>Edit Profile!</h1>
+
+<div><%= image_tag("#{@user.pic_url}") %></div>
+
+<%= form_for(@user) do |f| %>
+    <%= f.text_field :pic_url, :placeholder => "#{@user.name}" %>
+    <%= f.text_field :name, :placeholder => "#{@user.name}" %><br>
+    <%= f.password_field :password, :placeholder =>"Create a password" %><br>
+    <%= f.submit %>
+<% end%>
