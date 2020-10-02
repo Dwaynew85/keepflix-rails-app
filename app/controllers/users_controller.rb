@@ -20,14 +20,14 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.save
-            redirect_to movies_path #double check
+            redirect_to movies_path, notice: "#{@user.name} has been created. Please Login"
         else
             render 'users/new'
         end
     end
 
     def edit
-
+        @user = User.find(current_user.id)
     end
 
     def destroy

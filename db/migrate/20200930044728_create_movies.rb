@@ -12,8 +12,6 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.text :image_url
       t.text :link
       t.string :opinion
-      t.text :comments # own model
-      t.datetime :post_time # comment model
       t.integer :user_id # comment model too?
 
       t.timestamps null: false

@@ -1,3 +1,8 @@
+Study:
+[] Many to Many (movies)
+[] Nested Routes (users/movies?)
+[] helper forms?(adding movies/comments)
+
 Movies Model(user id and comment id)
 []belongs to user(users add movies to their personal list)
 []has many comments
@@ -23,3 +28,7 @@ Genre Model(add at the end to to set custom movie setter)
 []many to many movies
 []
 []Show: list of all movies under genre 
+
+Logins:
+[]Facebook
+[]Amazon?
