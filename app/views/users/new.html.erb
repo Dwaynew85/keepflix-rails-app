@@ -1,8 +1,26 @@
 <h1>Sign Up!</h1>
 <%= form_for(@user) do |f| %>
-    <%= f.text_field :pic_url, :placeholder => "Profile Pic URL"  %>
-    <%= f.text_field :name, :placeholder => "What's your name?"%><br>
-    <%= f.text_field :email, :placeholder => "What's your email"%><br>
-    <%= f.password_field :password, :placeholder =>"Create a password"%><br>
+
+    <p>
+        <%= f.label :pic_url %>
+        <%= f.text_field :pic_url, :placeholder => "Profile Pic URL"  %>
+    </p>
+
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name, :placeholder => "What's your name?"%>
+    </p>
+
+    <p>
+        <%= f.label :email %>
+        <%= f.text_field :email, :placeholder => "What's your email"%>
+    </p>
+
+    <p>
+        <%= f.label :password %>
+        <%= f.password_field :password, :placeholder =>"Create a password"%>
+    </p>
+
     <%= f.submit %>
+    
 <% end%>
