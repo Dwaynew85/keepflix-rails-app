@@ -126,6 +126,14 @@
       padding:20px;
       padding-left: 30px;
     }
+
+    .comment {
+      background-color: #fff;
+      border-radius:25px 75px;
+      margin: 5px;
+      padding: 10px;
+      padding-left: 100px;
+    }
   
   @media screen and (max-width: 600px) {
     .wrapper {
