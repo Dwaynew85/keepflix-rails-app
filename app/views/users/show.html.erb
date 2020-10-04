@@ -13,10 +13,10 @@
     <h2 style="display:inline;float:right"><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h2><br><br>
     <% movie.comments.each do |comment| %>
       <div class="comment">
+      <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
       <h3><%= comment.user.name %> writes:</h3> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
-      </div>
+      <!-- form for comments belonging to current logged in user -->
     <% end %>
-    <!-- add form to add comments -->
     <!-- <h6><%= (movie.updated_at + Time.zone_offset('EST')).strftime("%a, %b %d %Y %I:%M%p") %></h6> -->
     <br><br>
     </div>
