@@ -14,9 +14,14 @@
     <% movie.comments.each do |comment| %>
       <div class="comment">
       <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
-      <h3><%= comment.user.name %> writes:</h3> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
-      <!-- form for comments belonging to current logged in user -->
+      <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
+      </div>
     <% end %>
+    <%= form_with(model: [movie, @comment], local: true) do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit %>
+    <% end %>
+    <!-- add form to add comments -->
     <!-- <h6><%= (movie.updated_at + Time.zone_offset('EST')).strftime("%a, %b %d %Y %I:%M%p") %></h6> -->
     <br><br>
     </div>
