@@ -1,0 +1,25 @@
+<%= form_for(@user) do |f| %>
+
+    <p>
+        <%= f.label :pic_url %>
+        <%= f.text_field :pic_url %>
+    </p>
+
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </p>
+
+    <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+    </p>
+
+    <p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+    </p>
+
+    <%= f.submit %>
+    
+<% end%>
