@@ -26,5 +26,9 @@ class Movie < ApplicationRecord
         new_movie.save
         new_movie
       end
+
+      def sorted_comments
+        self.comments.sort_by { |c| c.updated_at}
+      end
     
 end

@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     has_many :movies
     has_many :comments, through: :movies
+    has_many :comments, dependent: :destroy
 
     validates :name, :email, presence: {message: "Email required"}
     validates :email, uniqueness: {message: "User email in use. Please log in with email or use another."}
