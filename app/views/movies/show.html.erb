@@ -11,23 +11,32 @@
   <br><br><br>
 </ul>
 
-<% if @movie #.user == current_user %>
-  <ul>
-    <% if !!@movie.comments %>
-      <li><strong>Comments:</strong> <%= @movie.comments %></li>
-      <li><strong><%= @movie.opinion %></strong></li><br>
-      <a href="<%= edit_movie_path %>">Edit Comment/Opinion</a>
-    <% else %>
-      <a href="<%= edit_movie_path %>">Leave Comment</a>
-    <% end %>
-  </ul><br>
 
-  <form action="<%= movie_path %>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" name="" value="Delete Movie">
-  </form>
-<% else %>
-  <form action="/movies" method="post" id="add-movie">
-    <button type="submit" form="add-movie" name="link" value="<%= @movie.link %>">Add To My Movies</button>
-  </form>
-<% end %>
+<div class="movie-post">
+  <div class ="">
+    <a href="<%= @movie.link %>" target="_blank"><img src="<%= @movie.image_url %>" alt=""></a>
+  </div>
+  <div class ="">
+    <ul> <!-- float left to image -->
+      <li><strong>Release Date:</strong> <%= @movie.release_date %></li>
+      <li><strong>Stars:</strong> <%= @movie.stars.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
+      <li><strong>Rating:</strong> <%= @movie.rating %></li>
+      <li><strong>Gernes:</strong> <%= @movie.genres.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
+      <li><strong>Runtime:</strong> <%= @movie.runtime %></li>
+      <li><strong>Summary:</strong> <%= @movie.summary %></li>
+      <% if @movie.trailer_link != "No Trailer Available" %><li><strong>Trailer:</strong> <a href="<%= @movie.trailer_link %>" target="_blank">View Trailer</a></li><% end %>
+      <br><br><br>
+    </ul>
+  </div>
+  <% @movie.sorted_comments.each do |comment| %>
+    <div class="comment">
+    <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
+    <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
+    <h6><%= link_to 'Edit', edit_movie_comment_path(@movie, comment) if comment.user.id == current_user.id %> <%= button_to "delete", movie_comment_path(@movie, comment), :method => :delete if comment.user.id == current_user.id %></h6>
+    </div>
+  <% end %>
+  <%= form_with(model: [@movie, @movie.comments.new], local: true) do |f| %> <!--move to comment form? -->
+    <%= f.text_field :content, :placeholder =>"Add Comment"%>
+    <%= f.submit :style => "display: none" %> 
+  <% end %>
+</div>

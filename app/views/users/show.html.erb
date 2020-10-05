@@ -7,24 +7,38 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 <p><%= @user.email %></p>
 
-  <% @movies.each do |movie| %>
-    <div class="movie-post">
-    <h4 style="display:inline"><a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4>
-    <h2 style="display:inline;float:right"><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h2><br><br>
-    <% movie.comments.each do |comment| %>
-      <div class="comment">
-      <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
-      <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
-      <%= button_to "delete", movie_comment_path(movie, comment), :method => :delete if comment.user.id == current_user.id %>
-      </div>
-    <% end %>
-    <%= form_with(model: [movie, @comment], local: true) do |f| %>
-      <%= f.text_field :content %>
-      <%= f.submit %>
-    <% end %>
-    <!-- add form to add comments -->
-    <!-- <h6><%= (movie.updated_at + Time.zone_offset('EST')).strftime("%a, %b %d %Y %I:%M%p") %></h6> -->
-    <br><br>
-    </div>
-  <% end %>
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<% @movies.each do |movie| %>
+  <div class="movie-post">
+    <table>
+      <th>
+        <tr>
+          <td><h4><a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4></td>
+          <td>
+            <h1><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h1>  
+            <h3><strong>Rated </strong> <%= movie.rating %></h3>
+            <h3><strong><%= movie.genres.gsub(/[^0-9a-z ]/i, '') %></strong></h3>
+          </td>
+        </tr>
+      </th>
+    </table>
+    <table>
+        <% movie.comments.each do |comment| %>
+          <tr>
+            <div class="comment">
+              <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
+              <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
+              <h6><%= link_to 'Edit', edit_movie_comment_path(movie, comment) if comment.user.id == current_user.id %> <%= button_to "delete", movie_comment_path(movie, comment), :method => :delete if comment.user.id == current_user.id %></h6>
+            </div>
+          </tr>
+        <% end %>
+        <%= form_with(model: [movie, @comment], local: true) do |f| %> <!--move to comment form? -->
+          <%= f.text_field :content, :placeholder =>"Add Comment"%>
+          <%= f.submit :style => "display: none" %> 
+        <% end %>
+    </table>
+  </div>
+
+<% end %>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+  
