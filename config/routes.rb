@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/update'
+  get 'comments/destroy'
   root 'site#index' # home?
 
-  resources :movies
+  resources :movies do 
+    resources :comments, only: [:create, :update, :destroy, :edit]
+  end
+  
   resources :users
 
   get '/signup' => 'users#new', as: 'signup'
