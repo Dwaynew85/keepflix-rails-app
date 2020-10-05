@@ -1,22 +1,36 @@
 class CommentsController < ApplicationController
   before_action :get_movie
-  before_action :set_comment, only: [:update, :destroy]
+  before_action :set_comment, only: [:update, :destroy, :edit]
 
   def create
     @comment = @movie.comments.build(comment_params)
     @comment.user_id = current_user.id
     @comment.save
-    redirect_to current_user
+    session[:return_to] ||= request.referer
+        
+    redirect_to session.delete(:return_to) 
+    #redirect_to current_user
+  end
+
+  def  edit
+    session[:return_to] ||= request.referer
   end
 
   def update
     @comment.update(comment_params)
-    redirect_to current_user
+
+    redirect_to session.delete(:return_to)
+    # redirect_to current_user
+  end
+
+  def delete 
   end
 
   def destroy
     @comment.destroy
-    redirect_to current_user
+    session[:return_to] ||= request.referer
+        
+    redirect_to session.delete(:return_to) 
   end
 
   private
