@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
     before_action :authentication_required
+    before_action :get_movie, only: [:show, :edit, :destroy]
+
     def index
         @movies = Movie.all
     end
@@ -8,22 +10,27 @@ class MoviesController < ApplicationController
         @movie = Movie.new
     end
 
-    def show 
-        @movie = Movie.find(params[:id])
+    def show
     end
 
     def create
         @movie = Movie.create_from_link(params[:movie][:link])
-
+        @movie.user = current_user
+        @movie.save
+       
         redirect_to movie_path(@movie)
     end
 
     def edit 
-        @movie = Movie.find(params[:id])
     end
 
     def destroy
-        @movie = Movie.find(params[:id])
         byebug
+    end
+
+    private 
+
+    def get_movie
+        @movie = Movie.find(params[:id])
     end
 end
