@@ -1,16 +1,4 @@
 <h1><strong><%= @movie.title %></strong></h1>
-<a href="<%= @movie.link %>" target="_blank"><img src="<%= @movie.image_url %>" alt=""></a>
-<ul> <!-- float left to image -->
-  <li><strong>Release Date:</strong> <%= @movie.release_date %></li>
-  <li><strong>Stars:</strong> <%= @movie.stars.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
-  <li><strong>Rating:</strong> <%= @movie.rating %></li>
-  <li><strong>Gernes:</strong> <%= @movie.genres.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
-  <li><strong>Runtime:</strong> <%= @movie.runtime %></li>
-  <li><strong>Summary:</strong> <%= @movie.summary %></li>
-  <% if @movie.trailer_link != "No Trailer Available" %><li><strong>Trailer:</strong> <a href="<%= @movie.trailer_link %>" target="_blank">View Trailer</a></li><% end %>
-  <br><br><br>
-</ul>
-
 
 <div class="movie-post">
   <div class ="">
