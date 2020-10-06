@@ -1,5 +1,7 @@
 class SiteController < ApplicationController
     def index
-        # if user is logged in, they go to user's profile page'
+        @user = User.find(current_user.id)  if current_user
+        @movies = Movie.all
+        @comment = Comment.new
     end
 end
