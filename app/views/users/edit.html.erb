@@ -1,5 +1,25 @@
 <h1>Edit Profile!</h1>
 
-<div><%= image_tag("#{@user.pic_url}", :class => "prof_pic") %></div>
+<img src="<%= @user.pic_url %>" alt="Profile Pic"  style="width:200px;height:200px;">
+<h1><%= @user.name %></h1>
+<h3><%= @user.email %></h3>
 
-<%= render 'form' %>
+<%= form_with(model: @user, local: true) do |f| %> 
+    Edit Name:<%= f.text_field :name%>
+    <%= f.submit :style => "display: none" %> 
+<% end %><br>
+
+<%= form_with(model: @user, local: true) do |f| %> 
+    Edit Email:<%= f.text_field :email%>
+    <%= f.submit :style => "display: none" %> 
+<% end %><br>
+
+<%= form_with(model: @user, local: true) do |f| %> 
+    Edit Profile Pic URL:<%= f.text_field :pic_url%>
+    <%= f.submit :style => "display: none" %> 
+<% end %><br>
+
+<%= form_with(model: @user, local: true) do |f| %> 
+    Edit Password:<%= f.text_field :password%>
+    <%= f.submit :style => "display: none" %> 
+<% end %>
