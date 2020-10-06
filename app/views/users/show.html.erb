@@ -1,44 +1,6 @@
-<h6><a href="/users/<%= @user.id %>/edit">Edit Profile</a></h6>
-<% if !@user.pic_url %>
-  <img src="https://image.freepik.com/free-photo/black-shade-anatomy-blue-wireframe-face-front-view-dark-background_48049-5.jpg" alt="Generic Profile Pic" style="width:100px;height:100px;">
-<% else %>
-  <img src="<%= @user.pic_url %>" alt="profile pic" style="width:100px;height:100px;">
+<img src="<%= @user.pic_url %>" alt="Profile Pic"  style="width:200px;height:200px;">
+<h1><%= @user.name %></h1>
+<h3><%= @user.email %></h3>
+<% if @user.id == current_user.id %>
+    <h6><a href="/users/<%= @user.id %>/edit">Edit Profile</a></h6>
 <% end %>
-<h1>Welcome, <%= @user.name %>!</h1>
-<p><%= @user.email %></p>
-
-<% @movies.each do |movie| %>
-  <div class="movie-post">
-    <table>
-      <th>
-        <tr>
-          <td><h4><a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4></td>
-          <td>
-            <h1><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h1>  
-            <h3><strong>Rated </strong> <%= movie.rating %></h3>
-            <h3><strong><%= movie.genres.gsub(/[^0-9a-z ]/i, '') %></strong></h3>
-          </td>
-        </tr>
-      </th>
-    </table>
-    <table>
-        <% movie.comments.each do |comment| %>
-          <tr>
-            <div class="comment">
-              <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
-              <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
-              <h6><%= link_to 'Edit', edit_movie_comment_path(movie, comment) if comment.user.id == current_user.id %> <%= button_to "delete", movie_comment_path(movie, comment), :method => :delete if comment.user.id == current_user.id %></h6>
-            </div>
-          </tr>
-        <% end %>
-        <%= form_with(model: [movie, @comment], local: true) do |f| %> <!--move to comment form? -->
-          <%= f.text_field :content, :placeholder =>"Add Comment"%>
-          <%= f.submit :style => "display: none" %> 
-        <% end %>
-    </table>
-  </div>
-
-<% end %>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-  
