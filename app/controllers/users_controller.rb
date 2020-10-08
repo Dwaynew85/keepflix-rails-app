@@ -21,12 +21,10 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        @user.save
         if @user.save
-            redirect_to movies_path, notice: "#{@user.name} has been created. Please Login"
+            redirect_to login_path, notice: "#{@user.name} has been created. Please Login"
         else
-            flash.now[:alert] = "Account"
-            render 'users/new', notice: ""
+            render 'users/new', notice: "#{explain_errors(@user)}"
         end
     end
 

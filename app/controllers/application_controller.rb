@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception #added myself
+    helper_method :current_user, :logged_in?, :check_for_user, :explain_errors
 
     def authentication_required
         if !logged_in?
@@ -20,5 +21,9 @@ class ApplicationController < ActionController::Base
     def current_user
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
-    helper_method :current_user, :logged_in?, :check_for_user
+
+    def explain_errors(user)
+        puts user.errors.messages.map { |key, value| value }.join(', ').capitalize
+    end
+    
 end
