@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authentication_required, except: :new
-    before_action :check_for_user, only: [:new, :create]
+    before_action :authentication_required, except: [:new, :create]
+    before_action :confirm_user, only: [:edit, :update]
 
     def index
         
@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     def new
         if logged_in?
+            @user = current_user
             redirect_to root_path
         else
             @user = User.new
@@ -19,13 +20,13 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.create(user_params)
+        @user = User.new(user_params)
+        @user.save
         if @user.save
-            flash.now[:alert] = "Account Created"
             redirect_to movies_path, notice: "#{@user.name} has been created. Please Login"
         else
-            flash.now[:alert] = "Account Denied"
-            render 'users/new'
+            flash.now[:alert] = "Account"
+            render 'users/new', notice: ""
         end
     end
 
