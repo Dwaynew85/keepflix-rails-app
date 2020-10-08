@@ -1,3 +1,79 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.comment {
+    background-color: #fff;
+    border-radius:25px 75px;
+    margin: 5px;
+    padding: 10px;
+    padding-left: 100px;
+    width: auto;
+    position: relative;
+  }
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	font-weight: inherit;
+	color: inherit;
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+li div.comment input.destroy {
+	// display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto 0;
+	margin-bottom: 11px;
+    transition: color 0.2s ease-out;
+    width: 40px;
+	height: 40px;
+    font-size: 20px;
+	background: none;
+    border: 0;
+    color: #d3d3d3;
+}
+
+li div.comment input.destroy:hover {
+	color: #ec9699;
+}
+
+li div.comment input.destroy:after {
+	content: '×';
+}
+
+li:hover .destroy {
+	display: block;
+}
+
+.edit {
+    position: absolute;
+	top: 60px;
+	right: 10px;
+	// bottom: 0;
+	margin: auto 0;
+	margin-bottom: 11px;
+    transition: color 0.2s ease-out;
+    width: 40px;
+	height: 40px;
+    font-size: 20px;
+	background: none;
+    border: 0;
+    color: #d3d3d3;
+    text-decoration: none;
+}
+
+.edit:hover {
+    color: #9a9ff1;
+}
