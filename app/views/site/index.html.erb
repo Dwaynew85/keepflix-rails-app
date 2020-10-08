@@ -4,38 +4,31 @@
     <p><%= @user.email %></p>
 
     <% @movies.each do |movie| %>
-    <div class="movie-post">
-        <table>
-        <th>
-            <tr>
-            <td><h4><a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4></td>
-            <td>
+        <li>
+            <div class="movie-post">
+                <h4><a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4>
                 <h1><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h1>  
                 <h3><strong>Rated </strong> <%= movie.rating %></h3>
                 <h3><strong><%= movie.genres.gsub(/[^0-9a-z ]/i, '') %></strong></h3>
-            </td>
-            </tr>
-        </th>
-        </table>
-        <table>
-            <% movie.comments.each do |comment| %>
-            <tr>
-                <div class="comment">
-                <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
-                <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
-                <h6><%= link_to 'Edit', edit_movie_comment_path(movie, comment) if comment.user.id == current_user.id %> <%= button_to "delete", movie_comment_path(movie, comment), :method => :delete if comment.user.id == current_user.id %></h6>
-                </div>
-            </tr>
-            <% end %>
-            <%= form_with(model: [movie, @comment], local: true) do |f| %> <!--move to comment form? -->
-            <%= f.text_field :content, :placeholder =>"Add Comment"%>
-            <%= f.submit :style => "display: none" %> 
-            <% end %>
-        </table>
-    </div>
+                <% movie.comments.each do |comment| %>
+                    <div class="comment">
+                        <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
+                        <%= button_to "X", movie_comment_path(movie, comment), :method => "delete", :class => "destroy" if comment.user.id == current_user.id %> <!-- delete button -->
+                        <h6><%= link_to 'Edit', edit_movie_comment_path(movie, comment), :class => "edit" if comment.user.id == current_user.id %></h6> <!--edit button -->
+                        <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p>
+                        <h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>                      
+                        
+                    </div>
+                <% end %>
+                <%= form_with(model: [movie, @comment], local: true) do |f| %> <!-- comment form -->
+                    <%= f.text_field :content, :placeholder =>"Add Comment" %>
+                    <%= f.submit :style => "display: none" %> 
+                <% end %>
+            </div>
+        </li>
 
     <% end %>
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
-  
+<% else %>
+  <h1>Welcome! Please Login or Sign Up</h1>
 <% end %>
