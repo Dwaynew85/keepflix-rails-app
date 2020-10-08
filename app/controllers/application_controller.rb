@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
         !!current_user
     end
 
-    def check_for_user
-        if logged_in?
-            redirect_to user_path(current_user)
+    def confirm_user
+        if params[:id] != current_user.id
+            redirect_to user_path(current_user), notice: 'You are not authorized to do that'
         end
     end
 
