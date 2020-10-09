@@ -1,7 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 class Movie < ApplicationRecord
-  belongs_to :user
+  has_many :users_movies
+  has_many :users, through: :users_movies
   has_many :comments
 
     def self.create_from_link(link)

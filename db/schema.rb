@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_060145) do
+ActiveRecord::Schema.define(version: 2020_10_09_071832) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_060145) do
     t.text "summary"
     t.text "image_url"
     t.text "link"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -43,6 +42,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_060145) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users_movies", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_users_movies_on_movie_id"
+    t.index ["user_id"], name: "index_users_movies_on_user_id"
   end
 
 end

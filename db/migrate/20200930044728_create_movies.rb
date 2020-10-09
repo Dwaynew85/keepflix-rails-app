@@ -11,7 +11,6 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.text :summary
       t.text :image_url
       t.text :link
-      t.integer :user_id # comment model too?
 
       t.timestamps null: false
     end
