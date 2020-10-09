@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
 
     def confirm_user
-        if params[:id] != current_user.id
+        unless params[:id].to_i == current_user.id
             redirect_to user_path(current_user), notice: 'You are not authorized to do that'
         end
     end
