@@ -5,3 +5,15 @@
 .field_with_errors input[type=text] {
     border: 1px solid red;
 }
+
+.field_with_errors input {
+    border: 1px solid red;
+  }
+
+.prof_pic {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 5px;
+    width: 50px;
+    height: 40px;
+  }
