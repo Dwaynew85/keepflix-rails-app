@@ -7,7 +7,7 @@ class Movie < ApplicationRecord
     def self.create_from_link(link)
         mov = Nokogiri::HTML(open(link))
         new_movie = Movie.find_or_create_by(title:mov.css(".title_wrapper h1").children.first.text)
-        if !new_movie.valid?
+        if !new_movie.stars?
           stars = mov.css(".credit_summary_item").last.css("a").children.collect {|star| star.text}
           stars.pop if stars.last.include?("See full cast")
           new_movie.stars = stars
