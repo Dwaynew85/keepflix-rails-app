@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
 
     def create
         @movie = Movie.create_from_link(params[:movie][:link])
-        @movie.user = current_user
+        @movie.users << current_user
         @movie.save
        
         redirect_to movie_path(@movie)
