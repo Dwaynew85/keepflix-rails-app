@@ -21,7 +21,7 @@
                     </div>
                 <% end %>
                 <%= form_with(model: [movie, @comment], local: true) do |f| %> <!-- comment form -->
-                    <%= f.text_field :content, :placeholder =>"Add Comment" %>
+                    <%= f.text_field :content, :placeholder =>"Add Comment", :class => "comment" %>
                     <%= f.submit :style => "display: none" %> 
                 <% end %>
             </div>
