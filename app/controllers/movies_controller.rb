@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
     before_action :authentication_required
-    before_action :get_movie, only: [:show, :edit, :destroy]
+    before_action :get_movie, only: [:show, :edit, :update, :destroy]
 
     def index
         @movies = current_user.movies
@@ -22,6 +22,13 @@ class MoviesController < ApplicationController
     end
 
     def edit 
+    end
+
+    def update
+        @movie.users << current_user
+        session[:return_to] ||= request.referer
+        
+        redirect_to session.delete(:return_to)
     end
 
     def destroy
