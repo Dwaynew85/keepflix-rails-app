@@ -4,7 +4,8 @@
 
 .comment {
     background-color: #fff;
-    border-radius:25px 75px;
+	border-radius:25px 75px;
+	border: none;
     margin: 5px;
     padding: 10px;
     padding-left: 100px;
@@ -28,7 +29,7 @@ button {
 	font-smoothing: antialiased;
 }
 
-li div.comment input.destroy {
+div.comment input.destroy {
 	// display: none;
 	position: absolute;
 	top: 0;
@@ -45,15 +46,15 @@ li div.comment input.destroy {
     color: #d3d3d3;
 }
 
-li div.comment input.destroy:hover {
+div.comment input.destroy:hover {
 	color: #ec9699;
 }
 
-li div.comment input.destroy:after {
+div.comment input.destroy:after {
 	content: '×';
 }
 
-li:hover .destroy {
+div:hover .destroy {
 	display: block;
 }
 
