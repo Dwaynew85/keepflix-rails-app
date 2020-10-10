@@ -1,10 +1,10 @@
 Study:
-[] Many to Many (movies)
+[x] Many to Many (movies)
 [x] Nested Routes (users/movies?)
 [x] helper forms?(adding movies/comments)
 
 Movies Model(user id and comment id)
-[]belongs to user(users add movies to their personal list)
+[x]belongs to user(users add movies to their personal list)
 [x]has many comments
 
 [x]Index: Shows full list of all movies, including picture and comments.
@@ -20,9 +20,18 @@ User Model
 [x]has many movies 
 [x]has many comments through movies
 [x]Edit: edit name, profile pic and password
-[]Delete account from edit screen
-[]Show: page with user info and comments on movies
+[X]Show: page with user info 
+
+[]Refactor with Partials(video)
 
 Logins:
 []Facebook
 []Amazon?
+
+ERRORS:
+[x] RecordNotFound when loading index with no users.
+[x] Default pictures if one isn't added
+
+[] link to user pages on feed page
+[] scope method to sort feed page my updated comments
+[] scope to show user's movies in "my movies"

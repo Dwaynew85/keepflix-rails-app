@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     before_action :get_movie, only: [:show, :edit, :destroy]
 
     def index
-        @movies = Movie.all
+        @movies = current_user.movies
     end
 
     def new
