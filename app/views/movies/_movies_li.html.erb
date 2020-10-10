@@ -1,0 +1,45 @@
+  
+            <div class="movie-post">
+                <h4><a href="/movies/<%= movie.id %>"><img src="<%= movie.image_url %>" alt="<%= movie.title %>" ></a></h4>
+                <%= button_to "Add To My Movies", movie_path(movie), :method => "patch", :class => "add-button" if !current_user.movies.include?(movie) %> <!-- 'add to my movies' button -->
+                <h1><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h1>  
+                <h3><strong>Rated </strong> <%= movie.rating %></h3>
+                <h3><strong><%= movie.genres.gsub(/[^0-9a-z ]/i, '') %></strong></h3>
+                <% movie.comments.each do |comment| %>
+                    <div class="comment">
+                        <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
+                        <%= button_to "X", movie_comment_path(movie, comment), :method => "delete", :class => "destroy" if comment.user.id == current_user.id %> <!-- delete button -->
+                        <h6><%= link_to 'Edit', edit_movie_comment_path(movie, comment), :class => "edit" if comment.user.id == current_user.id %></h6> <!--edit button -->
+                        <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p>
+                        <h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>                      
+                        
+                    </div>
+                <% end %>
+                <%= form_with(model: [movie, @comment], local: true) do |f| %> <!-- comment form -->
+                    <%= f.text_field :content, :placeholder =>"Add Comment", :class => "comment" %>
+                    <%= f.submit :style => "display: none" %> 
+                <% end %>
+            </div>
+
+            <!-- refactoring div -->
+             <%= content_tag(:div, movie, class: "movie-post") do %>
+                <h4><a href="/movies/<%= movie.id %>"><%= image_tag movie.image_url %></a></h4>
+                <%= button_to "Add To My Movies", movie_path(movie), :method => "patch", :class => "add-button" if !current_user.movies.include?(movie) %> <!-- 'add to my movies' button -->
+                <h1><a href="/movies/<%= movie.id %>"><%= movie.title %></a></h1>  
+                <h3><strong>Rated </strong> <%= movie.rating %></h3>
+                <h3><strong><%= movie.genres.gsub(/[^0-9a-z ]/i, '') %></strong></h3>
+                <% movie.comments.each do |comment| %>
+                    <div class="comment">
+                        <%= image_tag comment.user.pic_url, :class => "prof_pic", :alt => "Profile Pic" %>
+                        <%= button_to "X", movie_comment_path(movie, comment), :method => "delete", :class => "destroy" if comment.user.id == current_user.id %> <!-- delete button -->
+                        <%= link_to 'Edit', edit_movie_comment_path(movie, comment), :class => "edit" if comment.user.id == current_user.id %> <!--edit button -->
+                        <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p>
+                        <h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>                      
+                        
+                    </div>
+                <% end %>
+                <%= form_with(model: [movie, @comment], local: true) do |f| %> <!-- comment form -->
+                    <%= f.text_field :content, :placeholder =>"Add Comment", :class => "comment" %>
+                    <%= f.submit :style => "display: none" %> 
+                <% end %>
+            <% end %>
