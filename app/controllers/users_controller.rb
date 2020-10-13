@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         if @user.save
             redirect_to login_path, notice: "#{@user.name} has been created. Please Login"
         else
-            render 'users/new', notice: "#{explain_errors(@user)}"
+            render 'users/new'
         end
     end
 
