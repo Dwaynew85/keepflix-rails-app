@@ -33,5 +33,4 @@ ERRORS:
 [x] Default pictures if one isn't added
 
 [] link to user pages on feed page
-[] scope method to sort feed page my updated comments
-[] scope to show user's movies in "my movies"
+[] scope method for omniauth?
