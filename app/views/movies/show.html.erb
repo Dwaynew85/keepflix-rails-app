@@ -1,11 +1,11 @@
 <h1><strong><%= @movie.title %></strong></h1>
 
-<div class="movie-post">
+<%= tag.div class: "movie-post" do %>
   <div class ="">
-    <a href="<%= @movie.link %>" target="_blank"><img src="<%= @movie.image_url %>" alt=""></a>
+    <%= link_to image_tag(@movie.image_url), @movie.link, target: "_blank" %>
   </div>
   <div class ="">
-    <ul> <!-- float left to image -->
+    <ul> <!-- float left to image -->      
       <li><strong>Release Date:</strong> <%= @movie.release_date %></li>
       <li><strong>Stars:</strong> <%= @movie.stars.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
       <li><strong>Rating:</strong> <%= @movie.rating %></li>
@@ -27,4 +27,21 @@
     <%= f.text_field :content, :placeholder =>"Add Comment"%>
     <%= f.submit :style => "display: none" %> 
   <% end %>
-</div>
+<% end %>
+
+<%= tag.div class: "movie-post" do %>
+  <%= tag.div class: "movie-image" do %>
+    <%= link_to image_tag(@movie.image_url), @movie.link, target: "_blank" %>
+  <% end %>
+  <%= tag.div class: "movie-details" do %>
+    <%= tag.ul do %>
+      <%= tag.li tag.strong("Release Date: #{@movie.release_date}") %>
+      <%= tag.li tag.strong("Stars: #{@movie.stars.gsub(/[^0-9a-z ]/i, '')}") %>
+      <%= tag.li tag.strong("Rating: #{@movie.rating}") %>
+      <%= tag.li tag.strong("Genres: #{@movie.genres.gsub(/[^0-9a-z ]/i, '')}") %>
+      <%= tag.li tag.strong("Runtime: #{@movie.runtime}") %>
+      <%= tag.li tag.strong("Summary: #{@movie.summary}") %>
+      <%= trailer_link(@movie) %>
+    <% end %>
+  <% end %>
+<% end %>
