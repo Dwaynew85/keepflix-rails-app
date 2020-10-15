@@ -8,8 +8,7 @@ class CommentsController < ApplicationController
     @comment.save
     session[:return_to] ||= request.referer
         
-    redirect_to session.delete(:return_to) 
-    #redirect_to current_user
+    redirect_to session.delete(:return_to)
   end
 
   def  edit
@@ -20,7 +19,6 @@ class CommentsController < ApplicationController
     @comment.update(comment_params)
 
     redirect_to session.delete(:return_to)
-    # redirect_to current_user
   end
 
   def delete 
