@@ -5,6 +5,9 @@ class Movie < ApplicationRecord
   has_many :users, through: :users_movies
   has_many :comments
 
+  scope :trending, -> { Movie.left_joins(:comments).group(:id).order("count(comments.movie_id) desc") }
+
+
   def self.create_from_link(link)
       mov = Nokogiri::HTML(open(link))
       new_movie = Movie.find_or_create_by(title:mov.css(".title_wrapper h1").children.first.text)
@@ -31,7 +34,7 @@ class Movie < ApplicationRecord
       end
     end
 
-    def sorted_comments
+    def sorted_comments # scope?
       self.comments.sort_by { |c| c.updated_at}
     end
   
