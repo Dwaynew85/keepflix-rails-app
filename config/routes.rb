@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-  get 'comments/update'
-  get 'comments/destroy'
   root 'site#index'
 
   resources :movies do 
     resources :comments, only: [:create, :update, :destroy, :edit]
   end
+  get '/movies_trending' => 'movies#trending', as: 'trending'
   
   resources :users
 

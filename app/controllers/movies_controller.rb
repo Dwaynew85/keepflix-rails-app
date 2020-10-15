@@ -10,6 +10,12 @@ class MoviesController < ApplicationController
         @movie = Movie.new
     end
 
+    def trending 
+        @user = User.find(current_user.id)  if current_user
+        @movies = Movie.trending
+        @comment = Comment.new
+    end
+
     def show
     end
 
@@ -32,7 +38,7 @@ class MoviesController < ApplicationController
     end
 
     def destroy
-        byebug
+        byebug # delete from particular user's my movies list
     end
 
     private 
