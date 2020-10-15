@@ -2,6 +2,7 @@
     <img src="<%= @user.pic_url %>" alt="profile pic" style="width:100px;height:100px;"> <!-- refactor -->
     <h1>Welcome, <%= @user.name %>!</h1>
     <p><%= @user.email %></p>
+    <%= link_to 'Trending Movies', trending_path %>
     <%= render :collection => @movies, :partial => "movies/movies_li", :as => :movie %>
 <% else %>
   <h1>Welcome! Please Login or Sign Up</h1>
