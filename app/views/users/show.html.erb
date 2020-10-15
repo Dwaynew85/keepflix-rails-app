@@ -1,4 +1,4 @@
-<%= image_tag(@user.pic_url, alt: "Profile Pic", style: "width:200px;height:200px;") %>
+<%= image_tag(@user.pic_url, alt: "Profile Pic", size: "200x200") %>
 <%= tag.h1 @user.name %>
 <%= tag.h3 @user.email %>
 <% if @user.id == current_user.id %>
