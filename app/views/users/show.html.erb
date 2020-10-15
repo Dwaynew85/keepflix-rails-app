@@ -1,6 +1,6 @@
-<img src="<%= @user.pic_url %>" alt="Profile Pic"  style="width:200px;height:200px;">
-<h1><%= @user.name %></h1>
-<h3><%= @user.email %></h3>
+<%= image_tag(@user.pic_url, alt: "Profile Pic", style: "width:200px;height:200px;") %>
+<%= tag.h1 @user.name %>
+<%= tag.h3 @user.email %>
 <% if @user.id == current_user.id %>
-    <h6><a href="/users/<%= @user.id %>/edit">Edit Profile</a></h6>
+    <%= link_to "Edit Profile", edit_user_path(@user) %>
 <% end %>
