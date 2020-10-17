@@ -2,7 +2,7 @@
 
 <%= tag.div class: "movie-post" do %>
   <%= tag.div class: "movie-image" do %>
-    <%= link_to image_tag(@movie.image_url), @movie.link, target: "_blank" %>
+    <%= link_to image_tag(@movie.image_url, size: "250x300"), @movie.link, target: "_blank" %>
   <% end %>
   <%= my_movies_button(@movie) %>
   <%= tag.div class: "movie-details" do %>
