@@ -1,0 +1,4 @@
+<%= form_with(model: [movie, movie.comments.new], local: true) do |f| %> <!--move to comment form? -->
+    <%= f.text_field :content, :placeholder =>"Add Comment"%>
+    <%= f.submit :style => "display: none" %> 
+  <% end %>

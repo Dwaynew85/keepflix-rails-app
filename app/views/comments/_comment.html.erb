@@ -1,0 +1,5 @@
+<%= tag.div class: "comment" do %>
+    <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
+    <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.my_time %></h6>
+    <h6><%= edit_link(comment.movie, comment) %> <%= delete_button(comment.movie, comment) %></h6>
+<% end %>
