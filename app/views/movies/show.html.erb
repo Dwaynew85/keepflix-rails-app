@@ -1,38 +1,10 @@
-<h1><strong><%= @movie.title %></strong></h1>
-
-<%= tag.div class: "movie-post" do %>
-  <div class ="">
-    <%= link_to image_tag(@movie.image_url), @movie.link, target: "_blank" %>
-  </div>
-  <div class ="">
-    <ul> <!-- float left to image -->      
-      <li><strong>Release Date:</strong> <%= @movie.release_date %></li>
-      <li><strong>Stars:</strong> <%= @movie.stars.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
-      <li><strong>Rating:</strong> <%= @movie.rating %></li>
-      <li><strong>Gernes:</strong> <%= @movie.genres.gsub(/[^0-9a-z ]/i, '') %></li> <!-- check -->
-      <li><strong>Runtime:</strong> <%= @movie.runtime %></li>
-      <li><strong>Summary:</strong> <%= @movie.summary %></li>
-      <% if @movie.trailer_link != "No Trailer Available" %><li><strong>Trailer:</strong> <a href="<%= @movie.trailer_link %>" target="_blank">View Trailer</a></li><% end %>
-      <br><br><br>
-    </ul>
-  </div>
-  <% @movie.sorted_comments.each do |comment| %>
-    <div class="comment">
-    <%= image_tag("#{comment.user.pic_url}", :class => "prof_pic") %>
-    <h6><%= comment.user.name %> writes:</h6> <p><%= comment.content %></p><h6><%= comment.updated_at.strftime("%a, %b %d %Y %I:%M%p") %></h6>
-    <h6><%= link_to 'Edit', edit_movie_comment_path(@movie, comment) if comment.user.id == current_user.id %> <%= button_to "delete", movie_comment_path(@movie, comment), :method => :delete if comment.user.id == current_user.id %></h6>
-    </div>
-  <% end %>
-  <%= form_with(model: [@movie, @movie.comments.new], local: true) do |f| %> <!--move to comment form? -->
-    <%= f.text_field :content, :placeholder =>"Add Comment"%>
-    <%= f.submit :style => "display: none" %> 
-  <% end %>
-<% end %>
+<%= tag.hi tag.strong(@movie.title) %>
 
 <%= tag.div class: "movie-post" do %>
   <%= tag.div class: "movie-image" do %>
     <%= link_to image_tag(@movie.image_url), @movie.link, target: "_blank" %>
   <% end %>
+  <%= my_movies_button(@movie) %>
   <%= tag.div class: "movie-details" do %>
     <%= tag.ul do %>
       <%= tag.li tag.strong("Release Date: #{@movie.release_date}") %>
@@ -44,4 +16,6 @@
       <%= trailer_link(@movie) %>
     <% end %>
   <% end %>
+  <%= render partial: "comments/comment", collection: @movie.sorted_comments %>
+  <%= render partial: "comments/form", locals: {movie: @movie} %>
 <% end %>

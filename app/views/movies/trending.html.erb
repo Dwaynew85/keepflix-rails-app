@@ -1,5 +1,5 @@
-<img src="<%= @user.pic_url %>" alt="profile pic" style="width:100px;height:100px;"> <!-- refactor -->
-<h1>Welcome, <%= @user.name %>!</h1>
-<p><%= @user.email %></p>
+<%= image_tag(@user.pic_url, alt: "Profile Pic", size: "100x100") %>
+<%= tag.h1 "Welcome, #{@user.name}!" %>
+<%= tag.p @user.email %>
 <%= link_to 'Back', root_path %>
 <%= render :collection => @movies, :partial => "movies/movies_li", :as => :movie %>

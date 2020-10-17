@@ -10,21 +10,21 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      <h1><a href="/">KeepFlix</a></h1>
-      <h2>Your Personal Movie Library</h2>
+    <%= tag.div class: "wrapper" do %>
+      <%= tag.h1 link_to "KeepFlix", root_path %>
+      <%= tag.h2 "Your Personal Movie Library" %>
 
         <% flash.each do |type, msg| %>
-          <div>
+          <%= tag.div do %>
             <%= msg %>
-          </div>
+          <% end %>
         <% end %>
 
         <%= yield %>
 
-        <div class="sidebar">
-          <h3>Shortcuts</h3>
-           <ul>
+        <%= tag.div class: "sidebar" do %>
+          <%= tag.h3 "Shortcuts" %>
+           <%= tag.ul do %>
             <% if current_user %>
               <%= link_to "Profile", user_path(current_user) %>
               <%= link_to "My Movies", movies_path %>
@@ -33,12 +33,12 @@
               <%= link_to "Sign Up", new_user_path %>
               <%= link_to "Login", login_path %>
             <% end %> 
-          </ul> 
-        </div>
+           <%end  %>
+        <% end %>
       <footer class="branding">
         <small>&copy; 2020 <strong>KeepFlix</strong></small>
       </footer>
-    </div>
+    <% end %>
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

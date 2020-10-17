@@ -1,12 +1,12 @@
 
 <% if object.errors.any? %>
-  <div id="error_explanation">
+  <%= tag.div id: "error_explanation" do %>
     <h2><%= pluralize(object.errors.count, "error") %> prohibited this from being saved:</h2>
  
-    <ul>
-    <% object.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+    <%= tag.ul do %>
+      <% object.errors.full_messages.each do |msg| %>
+        <%= tag.li msg %>
+      <% end %>
     <% end %>
-    </ul>
-  </div>
+  <% end %>
 <% end %>
