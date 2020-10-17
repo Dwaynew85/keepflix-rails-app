@@ -35,7 +35,7 @@ class Movie < ApplicationRecord
     end
 
     def sorted_comments # scope?
-      self.comments.sort_by { |c| c.updated_at}
+      self.comments.order(:updated_at)
     end
   
 end
