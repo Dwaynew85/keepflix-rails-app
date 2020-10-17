@@ -38,7 +38,10 @@ class MoviesController < ApplicationController
     end
 
     def destroy
-        byebug # delete from particular user's my movies list
+        current_user.movies.delete(@movie)
+        session[:return_to] ||= request.referer
+        
+        redirect_to session.delete(:return_to)
     end
 
     private 
