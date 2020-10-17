@@ -1,9 +1,9 @@
 <% if logged_in? %>
-    <%= image_tag(@user.pic_url, alt: "Profile Pic", size: "100x100") %>
-    <%= tag.h1 "Welcome, #{@user.name}!" %>
-    <%= tag.p @user.email %>
-    <%= link_to 'Trending Movies', trending_path %>
-    <%= render :collection => @movies, :partial => "movies/movies_li", :as => :movie %>
+  <%= image_tag(@user.pic_url, alt: "Profile Pic", size: "100x100") %>
+  <%= tag.h1 "Welcome, #{@user.name}!" %>
+  <%= tag.p @user.email %>
+  <%= link_to 'Trending Movies', trending_path %>
+  <%= render :collection => @movies, :partial => "movies/movies_li", :as => :movie %>
 <% else %>
-  <h1>Welcome! Please Login or Sign Up</h1>
+  <%= tag.hi "Welcome! Please Login or Sign Up" %>
 <% end %>
