@@ -2,7 +2,7 @@
     <%= tag.h1 link_to movie.title, movie %>
     <%= tag.h4 link_to image_tag(movie.image_url), movie %>
     <%= my_movies_button(movie) %>  
-    <h3><strong>Rated </strong> <%= movie.rating %></h3> <!-- check refactoring -->
+    <h3><strong>Rated </strong> <%= movie.rating %></h3> 
     <h3><strong><%= movie.genres.gsub(/[^0-9a-z ]/i, '') %></strong></h3>
 
     <%= render partial: "comments/comment", collection: movie.comments %>
