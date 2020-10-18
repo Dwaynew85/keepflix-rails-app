@@ -3,8 +3,15 @@ class SessionsController < ApplicationController
     end
 
     def create
-        if auth_hash = request.env["omniauth.auth"]
-            user = User.find_or_create_by_omniauth(auth_hash)
+        if auth
+            user = User.find_or_create_by(id: auth['uid']) do |u|
+                u.name = auth['info']['name']
+                u.email = auth['info']['email']
+                u.pic_url = auth['info']['image']
+                u.password = SecureRandom.hex
+                byebug
+                u.save
+            end
             session[:user_id] = user.id
 
             redirect_to root_path 
@@ -24,5 +31,11 @@ class SessionsController < ApplicationController
     def destroy
         reset_session
         redirect_to login_path, notice: "Logged out!"
+    end
+
+    private
+ 
+    def auth
+      request.env['omniauth.auth']
     end
 end
