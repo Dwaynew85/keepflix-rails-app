@@ -1,4 +1,6 @@
-<%= form_with(model: [@movie, @comment], local: true) do |f| %> 
-    <%= f.text_field :content %>
-    <%= f.submit %>
+<%= tag.div class: "movie-post" do %>
+    <%= form_with(model: [@movie, @comment], local: true) do |f| %> 
+        <%= f.text_field :content %>
+        <%= f.submit %>
+    <% end %>
 <% end %>
