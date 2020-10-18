@@ -7,23 +7,42 @@ Specs:
 - [x] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
 - [x] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)
 - [x] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity)
+-Users have many Comments through Movies
+
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
+-User, Comment
+
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+- Movie.trending - http://localhost:3000/movies_trending
+
 - [x] Include signup (how e.g. Devise)
+- http://localhost:3000/signup
+
 - [x] Include login (how e.g. Devise)
+- http://localhost:3000/login
+
 - [x] Include logout (how e.g. Devise)
+- http://localhost:3000/logout
+
 - [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
+- http://localhost:3000/auth/facebook
+
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
+- http://localhost:3000/movies/2/comments/32/edit (given nature of nested resource)
+
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
+-http://localhost:3000/movies/1 (included on root and show page)
+
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
+- http://localhost:3000/users
 
 Confirm:
-- [ ] The application is pretty DRY
+- [x] The application is pretty DRY
 - [x] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [x] Views use helper methods if appropriate
+- [x] Views use partials if appropriate
 
 Finish
-- [ ] Finish omniauth login
-- [ ] Create partial for comments and movies
-- [ ] Style movies div for details to be next to picture
+- [x] Finish omniauth login
+- [x] Create partial for comments and movies
+- [x] Style movies div for details to be next to picture
