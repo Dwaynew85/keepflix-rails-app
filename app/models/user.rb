@@ -2,7 +2,6 @@ class User < ApplicationRecord
     has_secure_password
     has_many :users_movies
     has_many :movies, through: :users_movies
-    has_many :comments, through: :movies
     has_many :comments, dependent: :destroy
 
     validates :name, :email, presence: {message: "Email required"}
