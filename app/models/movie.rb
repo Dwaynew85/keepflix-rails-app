@@ -6,6 +6,7 @@ class Movie < ApplicationRecord
   has_many :comments
 
   scope :trending, -> { Movie.left_joins(:comments).group(:id).order("count(comments.movie_id) desc") }
+  scope :search, ->(search) { all.where('title LIKE ?', "%#{search}%")}
 
 
   def self.create_from_link(link)

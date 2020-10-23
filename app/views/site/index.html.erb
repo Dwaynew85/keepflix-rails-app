@@ -3,6 +3,7 @@
   <%= tag.h1 "Welcome, #{@user.name}!" %>
   <%= tag.p @user.email %>
   <%= link_to 'Trending Movies', trending_path %>
+  <%= render :partial => "search" %>
   <%= render :collection => @movies, :partial => "movies/movies_li", :as => :movie %>
 <% else %>
   <%= tag.hi "Welcome! Please Login or Sign Up" %>
