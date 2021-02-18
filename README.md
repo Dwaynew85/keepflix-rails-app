@@ -1,4 +1,5 @@
-Welcome to Keepflix! Your movie discussion platform.
+# Welcome to Keepflix! Your movie discussion platform.
+[Imgur](https://i.imgur.com/CuwuzgO.png)
 
 * Run 'bundle insall && rails s' to see it in action
 
